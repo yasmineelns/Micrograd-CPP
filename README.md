@@ -4,14 +4,11 @@ Ce projet est une **implémentation C++ d’un moteur d’auto-différentiation*
 Il permet de construire des **graphes computationnels dynamiques**, de calculer automatiquement les **gradients** via rétropropagation, et d’implémenter des **réseaux de neurones simples (MLP)**.
  
 ### Travaux en cours !! 
-Le projet est actuellement en cours d'extension pour **exploiter pleinement le MLP (Multi-Layer Perceptron)**.  
-Le fichier `testneuron.cpp` actuel effectue un test sur un neurone isolé, mais je travaille sur :  
+Le projet est actuellement en cours d'extension : 
+le cœur du moteur (autodiff et rétropropagation) et la structure du réseau de neurones (MLP) sont fonctionnels. La prochaine étape majeure est l'implémentation de la boucle d'apprentissage (training loop) sur un problème réel.
 
-- La création et l’exécution de **réseaux de neurones complets** avec plusieurs couches.  
-- La vérification des gradients pour tous les paramètres du MLP.  
-- La génération de graphes computationnels détaillés pour visualiser le réseau complet.  
 
-Un **fichier de test dédié au MLP** sera ajouté prochainement pour automatiser ces vérifications et illustrer les capacités du réseau.
+Un **fichier training.cpp** sera ajouté prochainement pour mettre en œuvre la descente de gradient stochastique (SGD), enchaînant la passe avant, le calcul de la fonction de perte, la rétropropagation et la mise à jour des paramètres du modèle.
 
 ### engine.cpp/engine.h
 Ce fichier implémente le cœur du moteur de calcul différentiable du projet.  
@@ -52,3 +49,7 @@ Rq: le test ne fait qu’exécuter un seul neurone isolé, il ne profite pas enc
 Ce fichier permet de **générer automatiquement une représentation visuelle du graphe de calcul** construit par le moteur d’auto-différentiation.  
 Il transforme les dépendances entre objets `Value` en un graphe au format **Graphviz (.dot)**.
 
+## testMLP.cpp
+Ce fichier est la démonstration de référence du réseau de neurones complet. Il illustre l'intégration réussie de l'autodiff avec la structure du MLP. Il instancie un MLP, effectue une passe avant, exécute la rétropropagation sur la sortie, et affiche les gradients de tous les paramètres du modèle. Crucialement, il génère le graphe computationnel complet de cette exécution pour une vérification visuelle de la chaîne de dépendances.
+
+![Texte alternatif](./mlp_graph.png)
